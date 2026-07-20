@@ -23,9 +23,8 @@ The EA can switch between model variants and includes preset-based trade managem
 - `src/mql5/NaiveBayesTrader.mq5` - MetaTrader 5 Expert Advisor.
 - `scripts/python/` - training, export, optimization, and evaluation scripts.
 - `data/h1/` - hourly training data for EURUSD, EURJPY, and USDJPY.
-- `models/onnx/` - exported ONNX model files.
+- `artifacts/` - exported ONNX models and generated CSV results.
 - `results/figures/` - comparison charts and visual outputs.
-- `results/tables/` - evaluation CSV outputs.
 - `Backtest/` - backtest transaction histories and MT5 reports grouped by model type.
 
 Files related to article writing or manuscript drafting are intentionally not included in the upload set.
@@ -70,7 +69,7 @@ python scripts/python/evaluate_table1.py
 ### 3. Install the EA in MetaTrader 5
 
 1. Copy `NaiveBayesTrader.mq5` into the MT5 `MQL5/Experts` folder.
-2. Copy the required `.onnx` model files from `models/onnx/` into the appropriate MT5 ONNX directory or the folder expected by your EA setup.
+2. Copy the required `.onnx` model files from `artifacts/` into the appropriate MT5 ONNX directory or the folder expected by your EA setup.
 3. Compile the EA in MetaEditor.
 4. Attach the EA to a supported chart timeframe.
 

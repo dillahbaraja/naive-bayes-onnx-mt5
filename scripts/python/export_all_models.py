@@ -70,7 +70,7 @@ def main():
     initial_type = [('float_input', FloatTensorType([None, 4]))]
     onnx_a = skl2onnx.convert_sklearn(model_a_full, initial_types=initial_type, 
                                       options={'zipmap': False}, target_opset=12)
-    with open(ROOT / "models" / "onnx" / "nb_model_a_gaussian.onnx", "wb") as f:
+    with open(ROOT / "artifacts" / "nb_model_a_gaussian.onnx", "wb") as f:
         f.write(onnx_a.SerializeToString())
         
     # ----------------------------------------------------
@@ -103,7 +103,7 @@ def main():
     pipeline_b_full.fit(X, y)
     onnx_b = skl2onnx.convert_sklearn(pipeline_b_full, initial_types=initial_type, 
                                       options={'zipmap': False}, target_opset=12)
-    with open(ROOT / "models" / "onnx" / "nb_model_b_static.onnx", "wb") as f:
+    with open(ROOT / "artifacts" / "nb_model_b_static.onnx", "wb") as f:
         f.write(onnx_b.SerializeToString())
 
     # ----------------------------------------------------
@@ -136,14 +136,14 @@ def main():
     pipeline_c_full.fit(X, y)
     onnx_c = skl2onnx.convert_sklearn(pipeline_c_full, initial_types=initial_type, 
                                       options={'zipmap': False}, target_opset=12)
-    with open(ROOT / "models" / "onnx" / "nb_model_c_cpda.onnx", "wb") as f:
+    with open(ROOT / "artifacts" / "nb_model_c_cpda.onnx", "wb") as f:
         f.write(onnx_c.SerializeToString())
 
     # ----------------------------------------------------
     # Menyimpan & Menampilkan Hasil
     # ----------------------------------------------------
     results_df = pd.DataFrame(results)
-    csv_filename = ROOT / "results" / "tables" / "model_evaluation_results.csv"
+    csv_filename = ROOT / "artifacts" / "model_evaluation_results.csv"
     results_df.to_csv(csv_filename, index=False)
     
     print("\n================ HASIL EVALUASI TRAINING ================")

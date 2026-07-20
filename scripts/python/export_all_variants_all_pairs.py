@@ -67,7 +67,7 @@ def train_and_export(csv_file, pair_name):
     
     onnx_a = skl2onnx.convert_sklearn(model_a, initial_types=initial_type, 
                                       options={'zipmap': False}, target_opset=12)
-    output_a = ROOT / "models" / "onnx" / f"gaussian_{pair_name.lower()}.onnx"
+    output_a = ROOT / "artifacts" / f"gaussian_{pair_name.lower()}.onnx"
     with open(output_a, "wb") as f:
         f.write(onnx_a.SerializeToString())
         
@@ -83,7 +83,7 @@ def train_and_export(csv_file, pair_name):
     
     onnx_b = skl2onnx.convert_sklearn(pipeline_b, initial_types=initial_type, 
                                       options={'zipmap': False}, target_opset=12)
-    output_b = ROOT / "models" / "onnx" / f"static_{pair_name.lower()}.onnx"
+    output_b = ROOT / "artifacts" / f"static_{pair_name.lower()}.onnx"
     with open(output_b, "wb") as f:
         f.write(onnx_b.SerializeToString())
 
@@ -99,7 +99,7 @@ def train_and_export(csv_file, pair_name):
     
     onnx_c = skl2onnx.convert_sklearn(pipeline_c, initial_types=initial_type, 
                                       options={'zipmap': False}, target_opset=12)
-    output_c = ROOT / "models" / "onnx" / f"cpda_{pair_name.lower()}.onnx"
+    output_c = ROOT / "artifacts" / f"cpda_{pair_name.lower()}.onnx"
     with open(output_c, "wb") as f:
         f.write(onnx_c.SerializeToString())
         

@@ -56,7 +56,7 @@ def train_and_export(csv_file, pair_name):
     pipeline.fit(X, y)
     
     output_filename = f"cpda_{pair_name.lower()}.onnx"
-    output_path = ROOT / "models" / "onnx" / output_filename
+    output_path = ROOT / "artifacts" / output_filename
     print(f"Mengekspor ke {output_path}...")
     initial_type = [('float_input', FloatTensorType([None, 4]))]
     onnx_model = skl2onnx.convert_sklearn(pipeline, initial_types=initial_type, 

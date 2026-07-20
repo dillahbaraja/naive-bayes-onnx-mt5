@@ -90,10 +90,10 @@ def main():
     onnx_model = skl2onnx.convert_sklearn(pipeline, initial_types=initial_type, target_opset=12)
     
     # Save
-    with open(ROOT / "models" / "onnx" / "naive_bayes_eurusd.onnx", "wb") as f:
+    with open(ROOT / "artifacts" / "naive_bayes_eurusd.onnx", "wb") as f:
         f.write(onnx_model.SerializeToString())
         
-    print("Model successfully exported to 'models/onnx/naive_bayes_eurusd.onnx'")
+    print("Model successfully exported to 'artifacts/naive_bayes_eurusd.onnx'")
 
 if __name__ == "__main__":
     main()
