@@ -1,0 +1,20 @@
+# Internal workspace folders
+.agents/
+.codex/
+.licenses/
+_render_id/
+_tmp_extract/
+
+# Article and manuscript files
+draf_artikel_naive_bayes*
+manuscript.docx
+References.ris
+References.txt
+Naive Bayes classifier for signals of a set of indicators - MQL5 Articles.pdf
+_translate_naive_bayes_docx.py
+optimasi_setting_kronologis.md
+images/
+
+# Optional local/editor files
+*.tmp
+*.log

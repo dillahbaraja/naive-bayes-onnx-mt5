@@ -1,0 +1,10 @@
+Model,Pair,Initial Deposit,Net Profit,Profit Factor,Recovery Factor,Maximal Drawdown,Total Trades,Win Rate
+CPDA,EURJPY,10 000.00,15 506.35,1.33,1.43,10 404.07 (28.97%) | Equity Drawdown Maximal: | 10 811.37 (30.00%),132,72 (54.55%)
+CPDA,EURUSD,10 000.00,17 055.00,1.30,2.68,5 630.00 (56.30%) | Equity Drawdown Maximal: | 6 360.00 (61.63%),198,107 (54.04%)
+CPDA,USDJPY,10 000.00,14 383.58,1.13,1.14,9 714.15 (31.86%) | Equity Drawdown Maximal: | 12 664.77 (57.62%),296,162 (54.73%)
+GAUSSIAN,EURJPY,10 000.00,-9 581.12,0.92,-0.60,15 263.90 (97.33%) | Equity Drawdown Maximal: | 15 895.08 (97.43%),307,158 (51.47%)
+GAUSSIAN,EURUSD,10 000.00,1 715.00,1.05,0.26,5 990.00 (51.75%) | Equity Drawdown Maximal: | 6 550.00 (37.40%),101,49 (48.51%)
+GAUSSIAN,USDJPY,10 000.00,16 188.28,1.06,0.64,23 957.55 (72.42%) | Equity Drawdown Maximal: | 25 184.70 (75.02%),656,335 (51.07%)
+STATIC,EURJPY,10 000.00,3 824.22,1.05,0.37,8 884.13 (51.70%) | Equity Drawdown Maximal: | 10 427.78 (57.96%),226,124 (54.87%)
+STATIC,EURUSD,10 000.00,11 385.00,1.91,2.55,3 520.00 (25.31%) | Equity Drawdown Maximal: | 4 460.00 (30.56%),40,23 (57.50%)
+STATIC,USDJPY,10 000.00,-3 792.64,0.86,-0.44,8 309.39 (61.76%) | Equity Drawdown Maximal: | 8 648.37 (62.99%),159,75 (47.17%)
