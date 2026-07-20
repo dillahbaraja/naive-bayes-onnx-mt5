@@ -4,11 +4,13 @@ from sklearn.naive_bayes import BernoulliNB
 from sklearn.preprocessing import KBinsDiscretizer
 from sklearn.pipeline import Pipeline
 import os
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
 
 def analyze_model_probabilities(csv_file, pair_name):
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    csv_path = os.path.join(script_dir, csv_file)
-    if not os.path.exists(csv_path):
+    csv_path = ROOT / "data" / "h1" / csv_file
+    if not csv_path.exists():
         return
         
     df = pd.read_csv(csv_path)

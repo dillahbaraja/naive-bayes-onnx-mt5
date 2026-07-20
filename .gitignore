@@ -18,3 +18,4 @@ images/
 # Optional local/editor files
 *.tmp
 *.log
+__pycache__/

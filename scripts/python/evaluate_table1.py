@@ -4,12 +4,14 @@ from sklearn.naive_bayes import GaussianNB, BernoulliNB
 from sklearn.preprocessing import KBinsDiscretizer
 from sklearn.metrics import accuracy_score, f1_score
 import warnings
+from pathlib import Path
 
 warnings.filterwarnings('ignore')
+ROOT = Path(__file__).resolve().parents[2]
 
 def main():
     print("Membaca data EURUSD_H1_Data.csv...")
-    df = pd.read_csv("EURUSD_H1_Data.csv")
+    df = pd.read_csv(ROOT / "data" / "h1" / "EURUSD_H1_Data.csv")
     df['Time'] = pd.to_datetime(df['Time'], format="%Y.%m.%d %H:%M")
     df.set_index('Time', inplace=True)
     

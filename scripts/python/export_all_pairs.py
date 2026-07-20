@@ -5,17 +5,16 @@ from sklearn.preprocessing import KBinsDiscretizer
 from sklearn.pipeline import Pipeline
 import skl2onnx
 from skl2onnx.common.data_types import FloatTensorType
-import os
 import warnings
+from pathlib import Path
 
 warnings.filterwarnings('ignore')
+ROOT = Path(__file__).resolve().parents[2]
 
 def train_and_export(csv_file, pair_name):
-    # Resolve absolute path for files relative to this script
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    csv_path = os.path.join(script_dir, csv_file)
+    csv_path = ROOT / "data" / "h1" / csv_file
     
-    if not os.path.exists(csv_path):
+    if not csv_path.exists():
         print(f"File {csv_path} tidak ditemukan, melewati...")
         return
         
@@ -56,9 +55,8 @@ def train_and_export(csv_file, pair_name):
     ])
     pipeline.fit(X, y)
     
-    # Save using absolute path
     output_filename = f"cpda_{pair_name.lower()}.onnx"
-    output_path = os.path.join(script_dir, output_filename)
+    output_path = ROOT / "models" / "onnx" / output_filename
     print(f"Mengekspor ke {output_path}...")
     initial_type = [('float_input', FloatTensorType([None, 4]))]
     onnx_model = skl2onnx.convert_sklearn(pipeline, initial_types=initial_type, 

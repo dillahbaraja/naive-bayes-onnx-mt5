@@ -8,13 +8,15 @@ from sklearn.metrics import classification_report, accuracy_score
 import skl2onnx
 from skl2onnx.common.data_types import FloatTensorType
 import warnings
+from pathlib import Path
 
 warnings.filterwarnings('ignore')
+ROOT = Path(__file__).resolve().parents[2]
 
 def main():
     print("Loading data...")
     # Load data
-    df = pd.read_csv("EURUSD_H1_Data.csv")
+    df = pd.read_csv(ROOT / "data" / "h1" / "EURUSD_H1_Data.csv")
     
     # Parse time
     # Format appears to be "2020.10.06 20:00"
@@ -88,10 +90,10 @@ def main():
     onnx_model = skl2onnx.convert_sklearn(pipeline, initial_types=initial_type, target_opset=12)
     
     # Save
-    with open("naive_bayes_eurusd.onnx", "wb") as f:
+    with open(ROOT / "models" / "onnx" / "naive_bayes_eurusd.onnx", "wb") as f:
         f.write(onnx_model.SerializeToString())
         
-    print("Model successfully exported to 'naive_bayes_eurusd.onnx'")
+    print("Model successfully exported to 'models/onnx/naive_bayes_eurusd.onnx'")
 
 if __name__ == "__main__":
     main()

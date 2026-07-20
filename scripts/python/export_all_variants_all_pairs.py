@@ -7,15 +7,15 @@ import skl2onnx
 from skl2onnx.common.data_types import FloatTensorType
 import os
 import warnings
+from pathlib import Path
 
 warnings.filterwarnings('ignore')
+ROOT = Path(__file__).resolve().parents[2]
 
 def train_and_export(csv_file, pair_name):
-    # Resolve absolute path for files relative to this script
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    csv_path = os.path.join(script_dir, csv_file)
+    csv_path = ROOT / "data" / "h1" / csv_file
     
-    if not os.path.exists(csv_path):
+    if not csv_path.exists():
         print(f"File {csv_path} tidak ditemukan, melewati...")
         return
         
@@ -67,7 +67,7 @@ def train_and_export(csv_file, pair_name):
     
     onnx_a = skl2onnx.convert_sklearn(model_a, initial_types=initial_type, 
                                       options={'zipmap': False}, target_opset=12)
-    output_a = os.path.join(script_dir, f"gaussian_{pair_name.lower()}.onnx")
+    output_a = ROOT / "models" / "onnx" / f"gaussian_{pair_name.lower()}.onnx"
     with open(output_a, "wb") as f:
         f.write(onnx_a.SerializeToString())
         
@@ -83,7 +83,7 @@ def train_and_export(csv_file, pair_name):
     
     onnx_b = skl2onnx.convert_sklearn(pipeline_b, initial_types=initial_type, 
                                       options={'zipmap': False}, target_opset=12)
-    output_b = os.path.join(script_dir, f"static_{pair_name.lower()}.onnx")
+    output_b = ROOT / "models" / "onnx" / f"static_{pair_name.lower()}.onnx"
     with open(output_b, "wb") as f:
         f.write(onnx_b.SerializeToString())
 
@@ -99,7 +99,7 @@ def train_and_export(csv_file, pair_name):
     
     onnx_c = skl2onnx.convert_sklearn(pipeline_c, initial_types=initial_type, 
                                       options={'zipmap': False}, target_opset=12)
-    output_c = os.path.join(script_dir, f"cpda_{pair_name.lower()}.onnx")
+    output_c = ROOT / "models" / "onnx" / f"cpda_{pair_name.lower()}.onnx"
     with open(output_c, "wb") as f:
         f.write(onnx_c.SerializeToString())
         

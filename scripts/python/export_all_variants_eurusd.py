@@ -7,12 +7,14 @@ import skl2onnx
 from skl2onnx.common.data_types import FloatTensorType
 import os
 import warnings
+from pathlib import Path
 
 warnings.filterwarnings('ignore')
+ROOT = Path(__file__).resolve().parents[2]
 
 def main():
-    csv_file = "EURUSD_H1_Data.csv"
-    if not os.path.exists(csv_file):
+    csv_file = ROOT / "data" / "h1" / "EURUSD_H1_Data.csv"
+    if not csv_file.exists():
         print(f"File {csv_file} tidak ditemukan!")
         return
         
@@ -45,7 +47,7 @@ def main():
     model_a.fit(X, y)
     onnx_a = skl2onnx.convert_sklearn(model_a, initial_types=initial_type, 
                                       options={'zipmap': False}, target_opset=12)
-    with open("gaussian_eurusd.onnx", "wb") as f:
+    with open(ROOT / "models" / "onnx" / "gaussian_eurusd.onnx", "wb") as f:
         f.write(onnx_a.SerializeToString())
     print("Sukses membuat 'gaussian_eurusd.onnx'")
     
@@ -58,7 +60,7 @@ def main():
     pipeline_b.fit(X, y)
     onnx_b = skl2onnx.convert_sklearn(pipeline_b, initial_types=initial_type, 
                                       options={'zipmap': False}, target_opset=12)
-    with open("static_eurusd.onnx", "wb") as f:
+    with open(ROOT / "models" / "onnx" / "static_eurusd.onnx", "wb") as f:
         f.write(onnx_b.SerializeToString())
     print("Sukses membuat 'static_eurusd.onnx'")
     
@@ -71,7 +73,7 @@ def main():
     pipeline_c.fit(X, y)
     onnx_c = skl2onnx.convert_sklearn(pipeline_c, initial_types=initial_type, 
                                       options={'zipmap': False}, target_opset=12)
-    with open("cpda_eurusd.onnx", "wb") as f:
+    with open(ROOT / "models" / "onnx" / "cpda_eurusd.onnx", "wb") as f:
         f.write(onnx_c.SerializeToString())
     print("Sukses membuat 'cpda_eurusd.onnx'")
     

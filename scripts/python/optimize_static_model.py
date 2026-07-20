@@ -5,8 +5,10 @@ from sklearn.preprocessing import KBinsDiscretizer
 from sklearn.pipeline import Pipeline
 import os
 import warnings
+from pathlib import Path
 
 warnings.filterwarnings('ignore')
+ROOT = Path(__file__).resolve().parents[2]
 
 def simulate_ea(df, pipeline, min_conf, min_spread, tz_offset, sl_mult, tp_mult, use_be, use_trend_filter):
     features = ['RSI', 'ATR', 'MACD_Main', 'Hour']
@@ -190,9 +192,8 @@ def simulate_ea(df, pipeline, min_conf, min_spread, tz_offset, sl_mult, tp_mult,
     return net_profit, len(trades), win_rate
 
 def optimize_pair(csv_file, pair_name):
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    csv_path = os.path.join(script_dir, csv_file)
-    if not os.path.exists(csv_path):
+    csv_path = ROOT / "data" / "h1" / csv_file
+    if not csv_path.exists():
         print(f"File {csv_path} not found.")
         return
         

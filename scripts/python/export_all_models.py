@@ -7,12 +7,14 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 import skl2onnx
 from skl2onnx.common.data_types import FloatTensorType
 import warnings
+from pathlib import Path
 
 warnings.filterwarnings('ignore')
+ROOT = Path(__file__).resolve().parents[2]
 
 def main():
     print("Membaca data...")
-    df = pd.read_csv("EURUSD_H1_Data.csv")
+    df = pd.read_csv(ROOT / "data" / "h1" / "EURUSD_H1_Data.csv")
     df['Time'] = pd.to_datetime(df['Time'], format="%Y.%m.%d %H:%M")
     df.set_index('Time', inplace=True)
     
@@ -68,7 +70,7 @@ def main():
     initial_type = [('float_input', FloatTensorType([None, 4]))]
     onnx_a = skl2onnx.convert_sklearn(model_a_full, initial_types=initial_type, 
                                       options={'zipmap': False}, target_opset=12)
-    with open("nb_model_a_gaussian.onnx", "wb") as f:
+    with open(ROOT / "models" / "onnx" / "nb_model_a_gaussian.onnx", "wb") as f:
         f.write(onnx_a.SerializeToString())
         
     # ----------------------------------------------------
@@ -101,7 +103,7 @@ def main():
     pipeline_b_full.fit(X, y)
     onnx_b = skl2onnx.convert_sklearn(pipeline_b_full, initial_types=initial_type, 
                                       options={'zipmap': False}, target_opset=12)
-    with open("nb_model_b_static.onnx", "wb") as f:
+    with open(ROOT / "models" / "onnx" / "nb_model_b_static.onnx", "wb") as f:
         f.write(onnx_b.SerializeToString())
 
     # ----------------------------------------------------
@@ -134,14 +136,14 @@ def main():
     pipeline_c_full.fit(X, y)
     onnx_c = skl2onnx.convert_sklearn(pipeline_c_full, initial_types=initial_type, 
                                       options={'zipmap': False}, target_opset=12)
-    with open("nb_model_c_cpda.onnx", "wb") as f:
+    with open(ROOT / "models" / "onnx" / "nb_model_c_cpda.onnx", "wb") as f:
         f.write(onnx_c.SerializeToString())
 
     # ----------------------------------------------------
     # Menyimpan & Menampilkan Hasil
     # ----------------------------------------------------
     results_df = pd.DataFrame(results)
-    csv_filename = "model_evaluation_results.csv"
+    csv_filename = ROOT / "results" / "tables" / "model_evaluation_results.csv"
     results_df.to_csv(csv_filename, index=False)
     
     print("\n================ HASIL EVALUASI TRAINING ================")
