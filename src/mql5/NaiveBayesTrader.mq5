@@ -1,10 +1,10 @@
 //+------------------------------------------------------------------+
 //|                                             NaiveBayesTrader.mq5 |
-//|                                  Copyright 2026, Antigravity AI |
-//|                                             https://google.com  |
+//|                                 Copyright 2026, Abdillah Baradja |
+//|                                          dillahbaraja@gmail.com  |
 //+------------------------------------------------------------------+
-#property copyright "Copyright 2026, Antigravity AI"
-#property link      "https://google.com"
+#property copyright "Copyright 2026, Abdillah Baradja"
+#property link      "dillahbaraja@gmail.com"
 #property version   "2.60"
 #property strict
 
